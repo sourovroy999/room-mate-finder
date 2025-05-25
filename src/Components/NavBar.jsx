@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const NavBar = () => {
 
     const{user,logOut, setUser}=useContext(AuthContext)
-    console.log(user);
+    // console.log(user);
+    const navigate=useNavigate()
 
     const[isHover, setHover]=useState(false)
 
@@ -22,6 +23,7 @@ const NavBar = () => {
         .then(()=>{
             console.log('log out successfully');
             setUser(null)
+            navigate('/register')
             
         })
         .catch(error=>{
@@ -33,14 +35,15 @@ const NavBar = () => {
 
     const links=<>
     <li> <NavLink>Home</NavLink> </li>
-    <li> <NavLink>Find Room Mate</NavLink> </li>
-    <li> <NavLink>My Listing</NavLink> </li>
-    <li> <NavLink>Browse Listing</NavLink> </li>
+    <li> <NavLink to={'/userroomform'}>Add To Find Room Mate</NavLink> </li>
+    <li> <NavLink to={'/mylisting'}>My Listing</NavLink> </li>
+    <li> <NavLink to={'/browseListing'}>Browse Listing</NavLink> </li>
     
     </>
 
     return (
-       <div className="navbar bg-base-100 shadow-sm px-12">
+        
+       <div className="navbar  bg-base-100 shadow-sm md:px-10  lg:px-40">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">

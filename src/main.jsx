@@ -11,6 +11,10 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import AuthProvider from "./Provider/AuthProvider";
+import UserRoomForm from "./Pages/UserRoomForm";
+import MyListing from "./Pages/MyListing";
+import BrowseListing from "./Pages/BrowseListing";
+import SingleRoom from "./Pages/SingleRoom";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +33,25 @@ const router = createBrowserRouter([
       {
         path:'/register',
         element:<Register/>
+      },
+      {
+        path:'/userroomform',
+        element:<UserRoomForm/>
+      },
+      {
+        path:'/mylisting',
+        element:<MyListing/>,
+        loader:()=>fetch(`http://localhost:5000/useraddedroom`)
+      },
+      {
+        path:'/browseListing',
+        element:<BrowseListing/>,
+       loader:()=>fetch(`http://localhost:5000/useraddedroom`)
+      },
+      {
+        path:'/browseListing/:id',
+        element:<SingleRoom/>,
+        loader:({params})=>fetch(`http://localhost:5000/useraddedroom/${params.id}`)
       }
 
     ]

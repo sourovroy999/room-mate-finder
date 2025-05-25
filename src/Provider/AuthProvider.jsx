@@ -52,6 +52,7 @@ const logOut=()=>{
     setUser,
     logOut,
     updateUser,
+    loading,
 
     
  }
