@@ -39,9 +39,12 @@ const router = createBrowserRouter([
         element:<UserRoomForm/>
       },
       {
-        path:'/mylisting',
+        path:'/mylisting/:email',
         element:<MyListing/>,
-        loader:()=>fetch(`http://localhost:5000/useraddedroom`)
+      
+        
+
+        loader:({params})=>fetch(`http://localhost:5000/mylisting/${params.email}`)
       },
       {
         path:'/browseListing',
@@ -52,7 +55,8 @@ const router = createBrowserRouter([
         path:'/browseListing/:id',
         element:<SingleRoom/>,
         loader:({params})=>fetch(`http://localhost:5000/useraddedroom/${params.id}`)
-      }
+      },
+      
 
     ]
   },

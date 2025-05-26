@@ -36,7 +36,7 @@ const NavBar = () => {
     const links=<>
     <li> <NavLink>Home</NavLink> </li>
     <li> <NavLink to={'/userroomform'}>Add To Find Room Mate</NavLink> </li>
-    <li> <NavLink to={'/mylisting'}>My Listing</NavLink> </li>
+    <li> <NavLink to={`/mylisting/${user?.email}`}>My Listing</NavLink> </li>
     <li> <NavLink to={'/browseListing'}>Browse Listing</NavLink> </li>
     
     </>

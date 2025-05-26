@@ -6,14 +6,6 @@ const BrowseListing = () => {
     const RoomsData=useLoaderData();
     console.log(RoomsData);
 
-    const handleDetailsBtn=(_id)=>{
-        console.log(_id);
-
-        
-
-    }
-    
-
     return (
         <div>
             <h1 className="text-center">all listing</h1>
@@ -43,7 +35,7 @@ const BrowseListing = () => {
         <td>{room.title}</td>
         <td>{room.location}</td>
         <td>{room.rent} $</td>
-        <td><Link to={`/browseListing/${room._id}`} onClick={()=>handleDetailsBtn(room._id)} className="btn">Details</Link></td>
+        <td><Link to={`/browseListing/${room._id}`} className="btn">Details</Link></td>
       </tr>)
       }
 
