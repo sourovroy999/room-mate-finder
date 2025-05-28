@@ -1,14 +1,30 @@
+import React from 'react';
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { useLoaderData } from 'react-router';
+import LoadingSpinner from './LoadingSpinner';
 
-const UserRoomForm = () => {
+const UpdateRoomData = () => {
+
+    const userRoomData=useLoaderData();
+    console.log(userRoomData);
+
+      const{ availiability, contact, description, email, guestpolicy, location, name, nightowl, pets, rent, roomType, smoking, title, _id }=userRoomData;
+
+      console.log(title);
+      
+    
+
 
   const{user, loading}=useContext(AuthContext)
   const[isHover, setHover]=useState(false)
   const[isHoverName, setHoverName]=useState(false)
+
+
   
   if(loading){
-    return <div className="text-center h-screen content-center  text-xl"><span className="loading loading-infinity loading-lg"></span></div>
+    return <LoadingSpinner/>
+    
   }
     if (!user) {
     return <div className="text-center text-red-500">User not found. Please log in.</div>;
@@ -37,17 +53,23 @@ const UserRoomForm = () => {
       const newRoomEntries=Object.fromEntries(formData.entries());
       console.log(newRoomEntries);
 
-      //send room data to db
-      fetch('http://localhost:5000/useraddedroom',{
-        method: 'POST',
+
+      //send updated room data to db
+      fetch(`http://localhost:5000/useraddedroom/${_id}`,{
+        method:'PUT',
         headers:{
           'Content-Type':'application/json'
+
         },
         body:JSON.stringify(newRoomEntries)
       })
+
       .then(res=>res.json())
       .then(data=>{
-        console.log(data)
+        console.log(data);
+        if(data.modifiedCount){
+          alert('updated successfully')
+        }
       }
       )
 
@@ -55,28 +77,34 @@ const UserRoomForm = () => {
 
 
 
+
       
     }
+
+
     return (
         <div className="w-2xl mt-2  mx-auto">
+
+            <h1 className='text-center text-2xl my-4'>UPDATE YOUR ROOM DETAILS</h1>
+
             <form onSubmit={handleRoomDetailsSubmit} className=" bg-base-100 pl-11 shrink-0">
       <div className="card-body ">
         <fieldset className="fieldset w-xl mx-auto ">
        
        
           <label className="label ">Title</label>
-          <input required  autoFocus type="text" className="input mb-4" name='title' placeholder="title" />
+          <input defaultValue={title} required  autoFocus type="text" className="input mb-4" name='title' placeholder="title" />
 
           <label className="label">Location</label>
-          <input required  autoFocus type="text" className="input mb-4" name='location' placeholder="location" />
+          <input defaultValue={location} required  autoFocus type="text" className="input mb-4" name='location' placeholder="location" />
 
            <label className="label">Rent Amount</label>
-          <input required autoFocus type="number" className="input mb-4" name='rent' placeholder="Rent Amount" />
+          <input defaultValue={rent} required autoFocus type="number" className="input mb-4" name='rent' placeholder="Rent Amount" />
 
 
            <label className="label">Room Type</label>
           
-          <select className="w-xs h-10 bg-base-200 rounded" name="roomType" id="roomType">
+          <select defaultValue={roomType} className="w-xs h-10 bg-base-200 rounded" name="roomType" id="roomType">
             <option value="Single">Single</option>
             <option value="Shared">Shared</option>
             <option value="Studio">Studio</option>
@@ -92,7 +120,7 @@ const UserRoomForm = () => {
             <div className="gap-4 flex">
                <label className="label">Pets: </label>
           
-          <select className=" h-8 w-[80px] bg-base-200 rounded" name="pets" id="pets">
+          <select defaultValue={pets} className=" h-8 w-[80px] bg-base-200 rounded" name="pets" id="pets">
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             
@@ -101,7 +129,7 @@ const UserRoomForm = () => {
            <div className="gap-4 flex">
                <label className="label">Smoking</label>
           
-           <select className=" h-8 w-[80px] bg-base-200 rounded" name="smoking" id="smoking">
+           <select defaultValue={smoking} className=" h-8 w-[80px] bg-base-200 rounded" name="smoking" id="smoking">
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             
@@ -110,7 +138,7 @@ const UserRoomForm = () => {
            <div className="gap-4 flex">
                <label className="label">Night Owl</label>
           
-           <select className=" h-8 w-[80px] bg-base-200 rounded" name="nightowl" id="nightowl">
+           <select defaultValue={nightowl} className=" h-8 w-[80px] bg-base-200 rounded" name="nightowl" id="nightowl">
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             
@@ -119,7 +147,7 @@ const UserRoomForm = () => {
             <div className="gap-4 flex">
                <label className="label">Guest Policy</label>
           
-          <select className="  h-8 w-[80px] bg-base-200 rounded" name="guestpolicy" id="GuestPolicy">
+          <select defaultValue={guestpolicy} className="  h-8 w-[80px] bg-base-200 rounded" name="guestpolicy" id="GuestPolicy">
             <option value="Often">Often</option>
             <option value="Occasionally">Occasionally</option>
             <option value="Never">Never</option>
@@ -130,14 +158,14 @@ const UserRoomForm = () => {
           </div>
           
            <label className="label">Description</label>
-          <input required autoFocus type="text" className="input mb-4" name='description' placeholder="description" />
+          <input defaultValue={description} required autoFocus type="text" className="input mb-4" name='description' placeholder="description" />
            <label className="label">Contact Info </label>
-          <input required autoFocus type="text" className="input mb-4" name='contact' placeholder="Contact Info " />
+          <input defaultValue={contact} required autoFocus type="text" className="input mb-4" name='contact' placeholder="Contact Info " />
          
                <label className="label">Availiability</label>
             <div className="gap-4 flex">
           
-           <select className=" h-8 w-[80px] bg-base-200 rounded" name="availiability" id="smoking">
+           <select defaultValue={availiability} className=" h-8 w-[80px] bg-base-200 rounded" name="availiability" id="smoking">
             <option value="Yes">Yes</option>
             <option value="No">No</option>
             
@@ -161,7 +189,7 @@ const UserRoomForm = () => {
           }
 
          
-          <button  className="btn w-xs bg-blue-500 mt-4">Add</button>
+          <button  className="btn w-xs bg-blue-500 mt-4">Update</button>
          
         </fieldset>
       </div>
@@ -170,4 +198,4 @@ const UserRoomForm = () => {
     );
 };
 
-export default UserRoomForm;
+export default UpdateRoomData;

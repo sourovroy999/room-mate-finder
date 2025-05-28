@@ -15,11 +15,14 @@ import UserRoomForm from "./Pages/UserRoomForm";
 import MyListing from "./Pages/MyListing";
 import BrowseListing from "./Pages/BrowseListing";
 import SingleRoom from "./Pages/SingleRoom";
+import UpdateRoomData from "./Pages/UpdateRoomData";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayOut/>,
+    errorElement:<ErrorPage/>,
     children:[
       {
         path:'/',
@@ -41,9 +44,6 @@ const router = createBrowserRouter([
       {
         path:'/mylisting/:email',
         element:<MyListing/>,
-      
-        
-
         loader:({params})=>fetch(`http://localhost:5000/mylisting/${params.email}`)
       },
       {
@@ -56,6 +56,13 @@ const router = createBrowserRouter([
         element:<SingleRoom/>,
         loader:({params})=>fetch(`http://localhost:5000/useraddedroom/${params.id}`)
       },
+      {
+        path:'/mylisting/update-room-data/:id',
+        element:<UpdateRoomData/>,
+        loader:({params})=>fetch(`http://localhost:5000/useraddedroom/${params.id}`)
+
+
+      }
       
 
     ]

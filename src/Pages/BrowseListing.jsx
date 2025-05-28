@@ -1,10 +1,19 @@
 import { Link, useLoaderData } from "react-router";
 import SingleRoomDetails from "../Components/SingleRoomDetails";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import LoadingSpinner from "./LoadingSpinner";
 
 const BrowseListing = () => {
 
+   const{ loading}=useContext(AuthContext)
+
     const RoomsData=useLoaderData();
     console.log(RoomsData);
+
+     if(loading){
+    return <LoadingSpinner/>
+  }
 
     return (
         <div>
