@@ -1,4 +1,3 @@
-import React from 'react';
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useLoaderData } from 'react-router';
@@ -84,6 +83,8 @@ const UpdateRoomData = () => {
 
     return (
         <div className="w-2xl mt-2  mx-auto">
+
+
 
             <h1 className='text-center text-2xl my-4'>UPDATE YOUR ROOM DETAILS</h1>
 
