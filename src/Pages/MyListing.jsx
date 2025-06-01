@@ -68,13 +68,13 @@ const MyListing = () => {
     
 
     return (
-        <div>
-            <h1 className='text-center'> my Listing page</h1>
+        <div className='pb-40'>
+            <h1 className='text-center font-bold text-3xl mt-3'> My Listings</h1>
 
             
-                        <div className="mt-9">
+                        <div className="mt-9 ">
                            <div className="overflow-x-auto max-w-5xl mx-auto">
-              <table className="table">
+              <table className="table ">
                 {/* head */}
                 <thead>
                   <tr>
@@ -83,7 +83,7 @@ const MyListing = () => {
                     <th>Title</th>
                     <th>Location</th>
             
-                    <th>Rent</th>
+                    <th>Rent/Mo</th>
                     <th>Actions</th>
                   </tr>
                 </thead>

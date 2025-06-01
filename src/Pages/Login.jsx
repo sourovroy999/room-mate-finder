@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
 const Login = () => {
 
         const {signIn,setUser, googleSignIn}=useContext(AuthContext)
@@ -11,11 +12,12 @@ const Login = () => {
           .then(result=>{
             setUser(result.user)
             navigate('/')
+            toast.success('Log In Successfully')
             
             
         })
         .catch(error=>{
-            console.log(error.message);
+            toast.error(error.message)
             
         })
     }    
@@ -29,12 +31,20 @@ const Login = () => {
         signIn(email,password)
         .then(result=>{
             console.log(result.user);
+            toast.success('Log In Successfully')
             setUser(result.user)
             navigate('/')
             
         })
         .catch(error=>{
-            console.log(error.message);
+            toast.error(error.message ,{
+              duration:800
+            })
+
+            setUser(null)
+            
+
+
             
         })
       
@@ -43,8 +53,8 @@ const Login = () => {
 
     }
     return (
-        <div>
-             <div className="bg-base-200 min-h-screen">
+        <div className="">
+             <div className="bg-base-200 min-h-screen pb-30">
   <div className="hero-content card flex-col pt-11">
     <div className="text-center mb-16 ">
       <h1 className="text-5xl font-bold">Sign In now!</h1>
@@ -60,13 +70,13 @@ const Login = () => {
           <label className="label">Password</label>
           <input required type="password" className="input" name='password' placeholder="Password" />
 
-          <p className="mt-4">Don't have an account? <Link className='text-blue-500' to={'/signUp'}>Register</Link></p>
+          <p className="mt-4">Don't have an account? <Link className='text-blue-500' to={'/register'}>Register</Link></p>
           <button  className="btn btn-neutral mt-4">Log In</button>
 
         </fieldset>
       </div>
     </form>
-          <button onClick={handleGoogleSignIn} className='btn mx-6 mb-5 bg-green-400'>Sign In With Google</button>
+          <button onClick={handleGoogleSignIn} className='btn mx-6 mb-5 bg-green-400'>Log In With Google</button>
        </div>
   </div>
 </div>

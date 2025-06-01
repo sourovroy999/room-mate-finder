@@ -3,6 +3,7 @@ import SingleRoomDetails from "../Components/SingleRoomDetails";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
+import Swal from "sweetalert2";
 
 const BrowseListing = () => {
 
@@ -15,12 +16,13 @@ const BrowseListing = () => {
     return <LoadingSpinner/>
   }
 
+ 
     return (
-        <div>
-            <h1 className="text-center">all listing</h1>
+        <div className="pb-40">
+              <h1 className='text-center font-bold text-3xl mt-3'>Browse Listings</h1>
 
             <div className="mt-9">
-               <div className="overflow-x-auto w-5xl mx-auto">
+               <div className="overflow-x-auto max-w-5xl mx-auto">
   <table className="table">
     {/* head */}
     <thead>
@@ -31,7 +33,7 @@ const BrowseListing = () => {
         <th>Location</th>
 
         <th>Rent</th>
-        <th></th>
+        <th className="pl-7">Details</th>
       </tr>
     </thead>
     <tbody>

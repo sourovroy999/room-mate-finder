@@ -17,6 +17,8 @@ import BrowseListing from "./Pages/BrowseListing";
 import SingleRoom from "./Pages/SingleRoom";
 import UpdateRoomData from "./Pages/UpdateRoomData";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import ProtectedRoute from "./Components/PrivateRoute/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,9 @@ const router = createBrowserRouter([
     children:[
       {
         path:'/',
-        element:<Home/>
+        element:<Home/>,
+        loader:()=>fetch('http://localhost:5000/useraddedroom/availiable')
+
       },
       {
         path:'/login',
@@ -39,11 +43,11 @@ const router = createBrowserRouter([
       },
       {
         path:'/userroomform',
-        element:<UserRoomForm/>
+        element:<ProtectedRoute><UserRoomForm/></ProtectedRoute> 
       },
       {
         path:'/mylisting/:email',
-        element:<MyListing/>,
+        element:<ProtectedRoute><MyListing/></ProtectedRoute>,
         loader:({params})=>fetch(`http://localhost:5000/mylisting/${params.email}`)
       },
       {
@@ -53,12 +57,12 @@ const router = createBrowserRouter([
       },
       {
         path:'/browseListing/:id',
-        element:<SingleRoom/>,
+        element:<ProtectedRoute><SingleRoom/></ProtectedRoute>,
         loader:({params})=>fetch(`http://localhost:5000/useraddedroom/${params.id}`)
       },
       {
         path:'/mylisting/update-room-data/:id',
-        element:<UpdateRoomData/>,
+        element:<ProtectedRoute><UpdateRoomData/></ProtectedRoute>,
         loader:({params})=>fetch(`http://localhost:5000/useraddedroom/${params.id}`)
 
 
@@ -72,10 +76,13 @@ const router = createBrowserRouter([
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
-
+<>
   <AuthProvider>
   <RouterProvider router={router} />
+  <Toaster/>
+
 
   </AuthProvider>
+  </>
 
 );

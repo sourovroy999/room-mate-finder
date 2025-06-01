@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import LoadingSpinner from './LoadingSpinner';
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const UpdateRoomData = () => {
 
@@ -11,6 +13,9 @@ const UpdateRoomData = () => {
       const{ availiability, contact, description, email, guestpolicy, location, name, nightowl, pets, rent, roomType, smoking, title, _id }=userRoomData;
 
       console.log(title);
+
+ const navigate=useNavigate()
+
       
     
 
@@ -44,6 +49,7 @@ const UpdateRoomData = () => {
  }
 
 
+
     const handleRoomDetailsSubmit=(e)=>{
       e.preventDefault();
       const form=e.target;
@@ -52,9 +58,17 @@ const UpdateRoomData = () => {
       const newRoomEntries=Object.fromEntries(formData.entries());
       console.log(newRoomEntries);
 
-
-      //send updated room data to db
-      fetch(`http://localhost:5000/useraddedroom/${_id}`,{
+      Swal.fire({
+        title:'Are You Sure To Update?',
+        icon:"info",
+         showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, Update it!"
+      })
+      .then(result=>{
+        if(result.isConfirmed){
+              fetch(`http://localhost:5000/useraddedroom/${_id}`,{
         method:'PUT',
         headers:{
           'Content-Type':'application/json'
@@ -63,14 +77,23 @@ const UpdateRoomData = () => {
         body:JSON.stringify(newRoomEntries)
       })
 
+      
+
       .then(res=>res.json())
       .then(data=>{
         console.log(data);
         if(data.modifiedCount){
-          alert('updated successfully')
+          toast.success('Updated Successfully')
+          navigate(`/mylisting/${user.email}`)
         }
       }
       )
+        }
+      })
+
+
+      //send updated room data to db
+    
 
 
 
@@ -82,15 +105,15 @@ const UpdateRoomData = () => {
 
 
     return (
-        <div className="w-2xl mt-2  mx-auto">
+        <div className="max-w-3xl mt-2 pb-20 mx-auto">
 
 
 
-            <h1 className='text-center text-2xl my-4'>UPDATE YOUR ROOM DETAILS</h1>
+            <h1 className="text-3xl  my-10 text-blue-400 text-center font-bold">UPDATE YOUR ROOM DETAILS</h1>
 
-            <form onSubmit={handleRoomDetailsSubmit} className=" bg-base-100 pl-11 shrink-0">
+            <form onSubmit={handleRoomDetailsSubmit} className=" bg-base-100 content-center shrink-0">
       <div className="card-body ">
-        <fieldset className="fieldset w-xl mx-auto ">
+        <fieldset className="fieldset md:pl-48">
        
        
           <label className="label ">Title</label>
@@ -105,7 +128,7 @@ const UpdateRoomData = () => {
 
            <label className="label">Room Type</label>
           
-          <select defaultValue={roomType} className="w-xs h-10 bg-base-200 rounded" name="roomType" id="roomType">
+          <select defaultValue={roomType} className="max-w-xs h-10 bg-base-200 rounded" name="roomType" id="roomType">
             <option value="Single">Single</option>
             <option value="Shared">Shared</option>
             <option value="Studio">Studio</option>
@@ -161,8 +184,8 @@ const UpdateRoomData = () => {
            <label className="label">Description</label>
           <input defaultValue={description} required autoFocus type="text" className="input mb-4" name='description' placeholder="description" />
            <label className="label">Contact Info </label>
-          <input defaultValue={contact} required autoFocus type="text" className="input mb-4" name='contact' placeholder="Contact Info " />
-         
+          <input required  type="tel" pattern="01[0-9]{9}" maxLength={11} minLength={11} className="input mb-4" name='contact' placeholder="01XXXXXXXXX" />
+
                <label className="label">Availiability</label>
             <div className="gap-4 flex">
           
@@ -190,7 +213,7 @@ const UpdateRoomData = () => {
           }
 
          
-          <button  className="btn w-xs bg-blue-500 mt-4">Update</button>
+          <button  className="btn max-w-xs bg-blue-500 mt-4">Update</button>
          
         </fieldset>
       </div>

@@ -1,2 +1,9 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark ---prefersdark, forest;
+}
+
+.active{
+  background-color: rgba(0, 0, 255, 0.58);
+  color: white;
+}
