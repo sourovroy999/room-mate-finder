@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-       <footer className="footer  sm:footer-horizontal bg-neutral text-neutral-content p-10">
+       <footer className="footer  sm:footer-horizontal bg-neutral text-neutral-content p-10 md:pl-56 ">
   <aside>
     <svg
       width="50"
@@ -21,6 +21,7 @@ const Footer = () => {
       Find your room parter
     </p>
   </aside>
+
   <nav>
     <h6 className="footer-title">Social</h6>
     <div className="grid grid-flow-col gap-4">

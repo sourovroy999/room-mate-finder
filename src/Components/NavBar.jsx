@@ -52,17 +52,17 @@ const NavBar = () => {
     
 
     const links=<>
-    <li > <NavLink to={'/'} >Home</NavLink> </li>
+    <li > <NavLink className='rounded-3xl' to={'/'} >Home</NavLink> </li>
  
-    <li className={`${!user&& 'hidden'} `}> <NavLink   to={'/userroomform'}  >Add To Find Room Mate</NavLink> </li>
-    <li className={`${!user&&'hidden'} `}  > <NavLink to={`/mylisting/${user?.email}`}>My Listing</NavLink> </li>
-    <li> <NavLink to={'/browseListing'}>Browse Listing</NavLink> </li>
+    <li className={`${!user&& 'hidden'} rounded-3xl `}> <NavLink  className={'rounded-3xl'} to={'/userroomform'}  >Add To Find Room Mate</NavLink> </li>
+    <li className={`${!user&&'hidden'}  `}  > <NavLink className={'rounded-3xl'} to={`/mylisting/${user?.email}`}>My Listing</NavLink> </li>
+    <li> <NavLink className={'rounded-3xl'} to={'/browseListing'}>Browse Listing</NavLink> </li>
     
     </>
 
     return (
         
-       <div className="navbar relative bg-base-100 shadow-sm z-10 px-0 md:px-10  lg:px-28">
+       <div className="navbar  relative bg-base-100 shadow-sm z-10 px-0 md:px-10  lg:px-28">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">

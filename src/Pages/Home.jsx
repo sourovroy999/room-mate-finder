@@ -12,6 +12,9 @@ import bannerThree from "../assets/student study.webp"
 import bannerFour from "../assets/luxury-domestic-kitchen-with-elegant-wooden-design-generated-by-ai.jpg"
 import { useLoaderData } from 'react-router';
 import SingleRoomDataForHome from '../Components/SingleRoomDataForHome';
+import { MdRoomService } from 'react-icons/md';
+import { BsApple, BsGooglePlay } from 'react-icons/bs';
+import { GrAppleAppStore } from 'react-icons/gr';
 
 
 
@@ -29,7 +32,7 @@ const Home = () => {
 
 
     return (
-        <div className='max-w-4xl mx-auto mt-9 pb-24' >
+        <div className='max-w-4xl mx-auto mt-9 ' >
 
         <div  className="w-screen  md:max-w-4xl  md:mx-auto carousel h-[400px]">
 
@@ -97,9 +100,72 @@ const Home = () => {
 {View}
 </div>
 
+{/* how it works section */}
+
+
+  <div className='text-center  my-8'>
+    <h1 className='text-3xl font-bold mb-3'>How it Works</h1>
+    <p>Post And Find Easy! You Will Post Your  Room <br /> details.Others will find you. </p>
+  </div>
+
+<div className='max-w-3xl   mx-auto '>
+
+<Fade delay={200}>
+  <div className='flex  justify-evenly flex-col md:flex-row  gap-4'>
+
+      <div className='w-56 text-center content-center mx-auto rounded-2xl   shadow-xl h-64'>
+
+        <div className='rounded-full w-20 h-20 bg-pink-300  mx-auto  mb-5'>
+
+        </div>
+
+        <p className='text-center  my-auto font-bold'>Find All Room <br /> Near You</p>
+
+      </div>
+
+      <div className='w-56  text-center content-center  mx-auto md:mt-12 rounded-2xl shadow-xl  h-64'>
+
+        <div className='rounded-full w-20 h-20 bg-blue-300 mx-auto  mb-5'>
+
+         
+        </div>
+
+        <p className='text-center font-bold  my-auto'> Select Your <br /> Home</p>
+
+      </div>
+
+      <div className='w-56 text-center content-center mx-auto  rounded-2xl shadow-xl h-64'>
+
+        <div className='rounded-full w-20 h-20 bg-orange-300 mx-auto  mb-5'>
+
+        </div>
+
+       
+        <p className='text-center font-bold  my-auto'> Pick Your Room <br /> and enjoy</p>
+
+      </div>
+     
+
+
+      {/* <div className='w-xs mt-10 card border h-48'>
+
+      </div>
+      <div className='w-xs card border h-48'>
+
+      </div> */}
+
+  </div>
+</Fade>
+
+  </div>
+
+
 {/* show availiable cards */}
-<div className='text-4xl font-bold text-center'>
+<div className='text-4xl mt-20 font-bold text-center'>
+
 {/* <h1 className='text-4xl text-center mt-6'>Available Rooms</h1> */}
+
+
 Availiable{' '}
 <span className='text-orange-400'>
   <Typewriter 
@@ -120,7 +186,7 @@ Availiable{' '}
 </div>
 
 
-<div className='grid  grid-cols-1 md:grid-cols-2 '>
+<div className='grid mt-8  grid-cols-1 md:grid-cols-2 '>
 
   {
     loaderRoomData.map(room=><SingleRoomDataForHome key={room._id} room={room}/>)
@@ -132,9 +198,44 @@ Availiable{' '}
 
 
 
+<div className='bg-blue-200 rounded-t-4xl md:rounded-t-[120px] rounded-b-3xl 
+ px-10 mt-20 py-10 pb-20'>
+
+<div className='my-10 '>
+
+  <div className='text-center'>
+    <h1 className="font-bold text-2xl mb-2">Thousands Of Students making <br /> a difference everyday using RooMers</h1>
+    <p className='font-medium'>Find someone to rent a empty room monthly or whole yearly and health <br /> insurance built for people like you. It is free to start saving</p>
+
+  
+
+  </div>
+
+</div>
+
+{/* app store link */}
+
+<div className='flex gap-8 flex-col md:flex-row justify-center'>
+
+  <div className=' w-fit flex   rounded-3xl mx-auto md:mx-0 bg-black text-white   px-4 py-2'>
+      <div className='my-auto -mr-3'>< BsGooglePlay/> </div>
+      <div className='ml-6 text-xs font-semibold '>
+        Get On <br /> <p className='font-bold text-xl -mt-1'>Google Play</p>
+      </div>
+  </div>
+
+  <div className=' w-[172px] flex   rounded-3xl  mx-auto md:mx-0  bg-black text-white  px-4 py-2'>
+      <div className=' my-auto -mr-3 '><BsApple/> </div>
+      <div className='ml-6 text-xs font-semibold '>
+        Get On <br /> <p className='font-bold text-xl -mt-1'>App Store</p>
+      </div>
+  </div>
+</div>
+
+</div>
 
 
-
+{/* 
 <div className='text-2xl mt-[400px] font-bold'>
   I am a{' '}
   <span className='text-red-500'>
@@ -152,7 +253,7 @@ Availiable{' '}
 
   </span>
 
-</div>
+</div> */}
 
 {/* <Fade>
   <p>I will gently appear as I enter the viewport</p>
