@@ -6,11 +6,13 @@ import { FaUserAlt } from 'react-icons/fa';
 
 const NavBar = () => {
 
-    const{user,logOut, setUser, loading}=useContext(AuthContext)
+    const{user,logOut, setUser,setTheme,theme, loading}=useContext(AuthContext)
     const navigate=useNavigate()
 
     const[isHover, setHover]=useState(false)
-    const[theme,setTheme]=useState('light')
+
+    console.log(theme);
+    
 
     useEffect(()=>{
       localStorage.setItem('theme', theme)

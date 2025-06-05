@@ -68,7 +68,7 @@ const UpdateRoomData = () => {
       })
       .then(result=>{
         if(result.isConfirmed){
-              fetch(`http://localhost:5000/useraddedroom/${_id}`,{
+              fetch(`https://room-mate-finder-server.onrender.com/useraddedroom/${_id}`,{
         method:'PUT',
         headers:{
           'Content-Type':'application/json'
@@ -184,7 +184,7 @@ const UpdateRoomData = () => {
            <label className="label">Description</label>
           <input defaultValue={description} required autoFocus type="text" className="input mb-4" name='description' placeholder="description" />
            <label className="label">Contact Info </label>
-          <input required  type="tel" pattern="01[0-9]{9}" maxLength={11} minLength={11} className="input mb-4" name='contact' placeholder="01XXXXXXXXX" />
+          <input defaultValue={contact} required  type="tel" pattern="01[0-9]{9}" maxLength={11} minLength={11} className="input mb-4" name='contact' placeholder="01XXXXXXXXX" />
 
                <label className="label">Availiability</label>
             <div className="gap-4 flex">

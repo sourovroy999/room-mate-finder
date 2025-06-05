@@ -29,7 +29,7 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Home/>,
-        loader:()=>fetch('http://localhost:5000/useraddedroom/availiable')
+        loader:()=>fetch('https://room-mate-finder-server.onrender.com/useraddedroom/availiable')
 
       },
       {
@@ -48,22 +48,22 @@ const router = createBrowserRouter([
       {
         path:'/mylisting/:email',
         element:<ProtectedRoute><MyListing/></ProtectedRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/mylisting/${params.email}`)
+        loader:({params})=>fetch(`https://room-mate-finder-server.onrender.com/mylisting/${params.email}`)
       },
       {
         path:'/browseListing',
         element:<BrowseListing/>,
-       loader:()=>fetch(`http://localhost:5000/useraddedroom`)
+       loader:()=>fetch(`https://room-mate-finder-server.onrender.com/useraddedroom`)
       },
       {
         path:'/browseListing/:id',
         element:<ProtectedRoute><SingleRoom/></ProtectedRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/useraddedroom/${params.id}`)
+        loader:({params})=>fetch(`https://room-mate-finder-server.onrender.com/useraddedroom/${params.id}`)
       },
       {
         path:'/mylisting/update-room-data/:id',
         element:<ProtectedRoute><UpdateRoomData/></ProtectedRoute>,
-        loader:({params})=>fetch(`http://localhost:5000/useraddedroom/${params.id}`)
+        loader:({params})=>fetch(`https://room-mate-finder-server.onrender.com/useraddedroom/${params.id}`)
 
 
       }

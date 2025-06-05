@@ -15,10 +15,19 @@ import SingleRoomDataForHome from '../Components/SingleRoomDataForHome';
 import { MdRoomService } from 'react-icons/md';
 import { BsApple, BsGooglePlay } from 'react-icons/bs';
 import { GrAppleAppStore } from 'react-icons/gr';
+import { AuthContext } from '../Provider/AuthProvider';
+import { useContext } from 'react';
+import { FaRestroom } from 'react-icons/fa';
+
+import findNearRoomIcon from '../assets/HomePageIcons/search_4021177.png'
+import selectHomeIcon from '../assets/HomePageIcons/icons8-home-64.png'
+import pickHomeIcon from '../assets/HomePageIcons/waiting-room_7118860.png'
 
 
 
 const Home = () => {
+  const{theme}=useContext(AuthContext)
+
 
   const loaderRoomData=useLoaderData()
  
@@ -93,7 +102,7 @@ const Home = () => {
 
 {/* Search room animation */}
 <Fade >
-<h1 className='text-center mt-20 text-4xl font-medium'>Search Your room Mate Here</h1>
+<h1 className='text-center mt-20 text-xl md:text-4xl font-medium'>Search Your room Mate Here</h1>
   </Fade>
 <div className='max-w-md mx-auto'>
 
@@ -103,9 +112,9 @@ const Home = () => {
 {/* how it works section */}
 
 
-  <div className='text-center  my-8'>
+  <div className='text-center px-1  my-8'>
     <h1 className='text-3xl font-bold mb-3'>How it Works</h1>
-    <p>Post And Find Easy! You Will Post Your  Room <br /> details.Others will find you. </p>
+    <p>Post And Find Easy! You Will Post Your  <br /> Room details.Others will find you. </p>
   </div>
 
 <div className='max-w-3xl   mx-auto '>
@@ -113,31 +122,35 @@ const Home = () => {
 <Fade delay={200}>
   <div className='flex  justify-evenly flex-col md:flex-row  gap-4'>
 
-      <div className='w-56 text-center content-center mx-auto rounded-2xl   shadow-xl h-64'>
+      <div className={`w-56 text-center content-center mx-auto rounded-2xl ${theme !== "light" && 'bg-[#0000ff1f]' }  shadow-xl h-64 `}>
 
-        <div className='rounded-full w-20 h-20 bg-pink-300  mx-auto  mb-5'>
-
+        <div className='rounded-full w-20 h-20 bg-pink-300  mx-auto  mb-5 items-center'>
+              <img src={findNearRoomIcon} alt="" />
         </div>
 
         <p className='text-center  my-auto font-bold'>Find All Room <br /> Near You</p>
 
       </div>
 
-      <div className='w-56  text-center content-center  mx-auto md:mt-12 rounded-2xl shadow-xl  h-64'>
 
-        <div className='rounded-full w-20 h-20 bg-blue-300 mx-auto  mb-5'>
 
-         
+      <div className={`w-56  text-center content-center  mx-auto md:mt-12 rounded-2xl shadow-xl  h-64 ${theme !== "light" && 'bg-[#0000ff1f]' } `}>
+
+        <div className='rounded-full w-20 h-20 bg-blue-300 mx-auto content-center mb-5'>
+
+          <img className='mx-auto' src={selectHomeIcon} alt="" />
         </div>
 
         <p className='text-center font-bold  my-auto'> Select Your <br /> Home</p>
 
       </div>
 
-      <div className='w-56 text-center content-center mx-auto  rounded-2xl shadow-xl h-64'>
 
-        <div className='rounded-full w-20 h-20 bg-orange-300 mx-auto  mb-5'>
 
+      <div className={`w-56 text-center content-center mx-auto  rounded-2xl shadow-xl h-64 ${theme !== "light" && 'bg-[#0000ff1f]' }`}>
+
+        <div className='rounded-full w-20 h-20 bg-orange-300 mx-auto  content-center mb-5'>
+          <img className='h-10 w-10 mx-auto ' src={pickHomeIcon} alt="" />
         </div>
 
        
@@ -161,7 +174,7 @@ const Home = () => {
 
 
 {/* show availiable cards */}
-<div className='text-4xl mt-20 font-bold text-center'>
+<div className='text-2xl md:text-4xl mt-20 font-bold text-center'>
 
 {/* <h1 className='text-4xl text-center mt-6'>Available Rooms</h1> */}
 
@@ -186,7 +199,7 @@ Availiable{' '}
 </div>
 
 
-<div className='grid mt-8  grid-cols-1 md:grid-cols-2 '>
+<div className='grid mt-8   grid-cols-1 md:grid-cols-2 '>
 
   {
     loaderRoomData.map(room=><SingleRoomDataForHome key={room._id} room={room}/>)
@@ -198,8 +211,8 @@ Availiable{' '}
 
 
 
-<div className='bg-blue-200 rounded-t-4xl md:rounded-t-[120px] rounded-b-3xl 
- px-10 mt-20 py-10 pb-20'>
+<div className={` rounded-t-4xl md:rounded-t-[120px] rounded-b-3xl 
+ px-10 mt-20 py-10 pb-20 ${theme !== "light" ? 'bg-[#0000ff38]' : 'bg-blue-200' }`}>
 
 <div className='my-10 '>
 

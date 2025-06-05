@@ -13,6 +13,10 @@ const SingleRoom = () => {
     console.log(roomData);
     const{ availiability, contact, description, email, guestpolicy, location, name, nightowl, pets, rent, roomType, smoking, title, _id }=roomData
 
+    const serverLike=roomData.totalLike;
+    console.log(serverLike);
+    
+
     const{user, loading}=useContext(AuthContext);  
 
       if(loading){
@@ -25,6 +29,22 @@ const SingleRoom = () => {
         setLikeCount(likeCount+1)
         setContact(contact)
 
+        // const totalLike=likeCount+1;
+        // const updateLike={totalLike}
+
+        // fetch(`https://room-mate-finder-server.onrender.com/useraddedroom/${_id}`,{
+        //   method:'PUT',
+        //   headers:{
+        //     'content-type':'application/json',
+        //   },
+        //   body:JSON.stringify(updateLike)
+        // })
+        // .then(res=>res.json())
+        // .then(data=>{
+        //   console.log(data);
+          
+        // })
+
 
     }
 
@@ -35,6 +55,7 @@ const SingleRoom = () => {
           <div className='text-center text-2xl font-bold py-7'>
             {likeCount} People Interested In this Post
           </div>
+          
         <div className="card max-w-2xl mx-auto  bg-base-100 shadow-sm">
   <div className="card-body">
 
@@ -51,7 +72,7 @@ const SingleRoom = () => {
       <span className="text-xl">Rent: ${rent}/mo</span>
   <div className="badge text-white badge-info">{roomType}</div>
 
-    <div className='grid  grid-cols-2'>
+    <div className='grid  grid-cols-2 '>
 
      
         
@@ -83,7 +104,7 @@ const SingleRoom = () => {
         
         
         <h1 className=' h-8 bg-base-200  content-center'>Email</h1>
-        <h1 className='content-center bg-base-200'>{email}</h1>
+        <h1 className='content-center bg-base-200 overflow-auto '>{email}</h1>
 
    </div>
 

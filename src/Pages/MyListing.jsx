@@ -27,7 +27,7 @@ const MyListing = () => {
   if (result.isConfirmed) {
 
 
-    fetch(`http://localhost:5000/useraddedroom/${_id}`,{
+    fetch(`https://room-mate-finder-server.onrender.com/useraddedroom/${_id}`,{
         method:'DELETE'
     })
     .then(res=>res.json())
@@ -42,7 +42,7 @@ const MyListing = () => {
 
              Swal.fire({
       title: "Deleted!",
-      text: "Your file has been deleted.",
+      text: "Your room has been deleted.",
       icon: "success"
     });
         }

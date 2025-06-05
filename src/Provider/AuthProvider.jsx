@@ -43,6 +43,9 @@ const logOut=()=>{
     return signOut(auth)
 }
 
+    const[theme,setTheme]=useState('light')
+
+
 
  const allInfo={
     registerUser,
@@ -53,6 +56,8 @@ const logOut=()=>{
     logOut,
     updateUser,
     loading,
+    theme,
+    setTheme
 
     
  }

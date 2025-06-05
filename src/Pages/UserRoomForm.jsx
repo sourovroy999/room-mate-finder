@@ -43,7 +43,7 @@ const UserRoomForm = () => {
       console.log(newRoomEntries);
 
       //send room data to db
-      fetch('http://localhost:5000/useraddedroom',{
+      fetch('https://room-mate-finder-server.onrender.com/useraddedroom',{
         method: 'POST',
         headers:{
           'Content-Type':'application/json'
